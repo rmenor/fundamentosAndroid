@@ -39,6 +39,7 @@ class ChannelsAdapter(
 
 		fun bind(channel: Channel) {
 			binding.channelName.text = channel.name
+			binding.channelImage.setImageResource(channel.channelImageRes)
 			binding.root.setOnClickListener { onChannelClick(channel) }
 		}
 	}
