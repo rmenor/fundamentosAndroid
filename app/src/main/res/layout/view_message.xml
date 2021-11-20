@@ -5,14 +5,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     >
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/channelName"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="@tools:sample/lorem/random"
-        />
+        android:gravity="top"
+        >
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/messageImage"
+            android:layout_margin="12dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            tools:text="Imagen del canal"
+            tools:srcCompat="@drawable/alicia_avatar"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/messageText"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="@tools:sample/lorem/random"
+            />
+
+    </LinearLayout>
+
 </FrameLayout>

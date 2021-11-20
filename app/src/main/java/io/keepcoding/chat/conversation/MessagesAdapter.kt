@@ -39,7 +39,8 @@ class MessagesAdapter(
 	) : RecyclerView.ViewHolder(binding.root) {
 
 		fun bind(message: Message) {
-			binding.channelName.text = "${message.sender.name}: ${message.text}"
+			binding.messageText.text = "${message.sender.name}: ${message.text}"
+			binding.messageImage.setImageResource(message.sender.profileImageRes)
 		}
 	}
 }
