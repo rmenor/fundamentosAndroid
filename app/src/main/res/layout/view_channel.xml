@@ -21,15 +21,34 @@
             tools:text="Imagen del canal"
             tools:srcCompat="@drawable/ic_react_native"
             />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/channelName"
+        
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:layout_gravity="center_vertical"
-            tools:text="Channel Name"
-            />
+            android:orientation="vertical"
+            >
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/channelName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center_vertical"
+                tools:text="Channel Name"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/msDateTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center_vertical"
+                tools:text="Date time"
+                />
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </FrameLayout>
