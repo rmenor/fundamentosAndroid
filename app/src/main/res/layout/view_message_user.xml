@@ -3,22 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="top"
         >
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/messageImage"
-            android:layout_margin="12dp"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            tools:text="Imagen del canal"
-            tools:srcCompat="@drawable/alicia_avatar"
-            />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/messageText"
@@ -28,11 +19,9 @@
             android:layout_marginBottom="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="@tools:sample/lorem/random"
-            android:background="@color/teal_700"
-            android:textColor="@color/white"
+            android:background="@color/purple_200"
             android:padding="10dp"
-            />
+            tools:text="@tools:sample/lorem/random" />
 
     </LinearLayout>
 

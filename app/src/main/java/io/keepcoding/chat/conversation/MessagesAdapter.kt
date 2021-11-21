@@ -1,22 +1,45 @@
 package io.keepcoding.chat.conversation
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import io.keepcoding.chat.Message
+import io.keepcoding.chat.R
+import io.keepcoding.chat.Repository
 import io.keepcoding.chat.databinding.ViewMessageBinding
+import io.keepcoding.chat.databinding.ViewMessageUserBinding
 import io.keepcoding.chat.extensions.inflater
 
 class MessagesAdapter(
 	diffUtilCallback: DiffUtil.ItemCallback<Message> = DIFF
-) : ListAdapter<Message, MessagesAdapter.MessageViewHolder>(diffUtilCallback) {
+) : ListAdapter<Message, RecyclerView.ViewHolder>(diffUtilCallback) {
 
-	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder =
-		MessageViewHolder(parent)
+	private val VIEW_TYPE_USER = 1 // Indica que es el mismo usuario
 
-	override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
-		holder.bind(getItem(position))
+	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder = run {
+		if (viewType == VIEW_TYPE_USER)
+			MessageViewUserHolder(parent)
+		else
+			MessageViewHolder(parent)
+	}
+
+	override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) = run {
+		when (holder) {
+			is MessageViewHolder -> holder.bind(getItem(position))
+			is MessageViewUserHolder -> holder.bind(getItem(position))
+		}
+	}
+
+	//
+	override fun getItemViewType(position: Int): Int {
+		var isUser = 0;
+		val message = currentList[position]
+		if (message.sender.id == Repository.currentSender.id) {
+			isUser = VIEW_TYPE_USER
+		}
+		return isUser
 	}
 
 	companion object {
@@ -41,6 +64,22 @@ class MessagesAdapter(
 		fun bind(message: Message) {
 			binding.messageText.text = "${message.sender.name}: ${message.text}"
 			binding.messageImage.setImageResource(message.sender.profileImageRes)
+		}
+	}
+
+	// Nuevo holder
+	class MessageViewUserHolder(
+		parent: ViewGroup,
+		private val binding: ViewMessageUserBinding = ViewMessageUserBinding.inflate(
+			parent.inflater,
+			parent,
+			false
+		)
+	) : RecyclerView.ViewHolder(binding.root) {
+
+		fun bind(message: Message) {
+			binding.messageText.text = "${message.sender.name}: ${message.text}"
+			//binding.messageImage.setImageResource(message.sender.profileImageRes)
 		}
 	}
 }

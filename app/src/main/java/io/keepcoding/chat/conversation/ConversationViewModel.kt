@@ -1,5 +1,6 @@
 package io.keepcoding.chat.conversation
 
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -16,7 +17,10 @@ class ConversationViewModel(private val repository: Repository) : ViewModel() {
 	val state: LiveData<State> = _state
 	private val _message: MutableLiveData<String> = MutableLiveData("")
 	val message: LiveData<String> = _message
-	val sendButtonEnabled: LiveData<Boolean> = Transformations.map(_message) { it.isNotBlank() }
+
+	val sendButtonEnabled: LiveData<Boolean> = Transformations.map(_message) {
+		it.isNotBlank()
+	}
 
 	fun loadConversation(channelId: String) {
 		_state.postValue(
@@ -65,7 +69,7 @@ class ConversationViewModel(private val repository: Repository) : ViewModel() {
 			_message.postValue("")
 		}
 		sentMessage.onFailure {
-			// TODO: Check if message was sent properly
+			_message.postValue(it.message)
 		}
 	}
 

@@ -7,6 +7,36 @@
     tools:context=".conversation.ConversationActivity"
     >
 
+    <LinearLayout
+        android:id="@+id/emptyMessages"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        >
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/emptyImage"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="32dp"
+            android:layout_marginBottom="50dp"
+            android:background="@color/white"
+            tools:srcCompat="@drawable/ic_empty_message"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/emptyText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/emptyImage"
+            tools:text="No hay mensajes, se el primero en escribir"
+            />
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/conversation"
         android:layout_width="match_parent"
@@ -43,4 +73,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="ContentDescription"
             />
+
+    <ProgressBar
+        android:id="@+id/pbChannel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
