@@ -46,11 +46,11 @@ class ChannelsActivity : AppCompatActivity() {
 					hideLoading()
 				}
 				is ChannelsViewModel.State.Error.ErrorLoading -> {
-					Toast.makeText(this, "Se ha producido un error de carga", Toast.LENGTH_SHORT).show() // Error
+					showError( "Se ha producido un error de carga") // Error
 					hideLoading()
 				}
 				is ChannelsViewModel.State.Error.ErrorWithChannels -> {
-					Toast.makeText(this, "Se ha producido un error al recibir los canales", Toast.LENGTH_SHORT).show() // Error
+					showError("Se ha producido un error al recibir los canales") // Error
 					channelsAdapter.submitList(it.channels)
 					hideLoading()
 				}
@@ -77,7 +77,9 @@ class ChannelsActivity : AppCompatActivity() {
 		vm.loadChannels()
 	}
 
-
+	private fun showError(error: String) {
+		Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+	}
 
 	private fun openChannel(channel: Channel) {
 		startActivity(ConversationActivity.createIntent(this, channel))
